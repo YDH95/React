@@ -1,0 +1,79 @@
+====================================
+this.setState 와 this.state 이해하기
+
+state를 변경하기 위해서는 setState() 함수를 사용해야함
+
+setState()함수는 비동기함수
+====================================
+import React, { Component } from 'react';
+import $ from 'jquery';
+
+
+class App2 extends Component{
+  render(){
+    return (
+      <div className='App2'>
+        test
+      </div>
+    );
+  }
+}
+
+class App extends Component {
+  // state = {
+  //   hello : "hello"  
+  // };
+
+  // change = () => {
+  //   this.setState({
+  //     hello : "bye"
+  //   });
+  // };
+
+  state = {
+    count : 0  
+  };
+
+  countUp = () => {
+    this.setState({
+      count : this.state.count + 1
+    });
+  };
+
+  countDown = () => {
+    this.setState({
+      count : this.state.count - 1
+    });
+  };
+
+  componentDidMount() {
+    $('.btn').on('click', function () {
+      console.log('test');
+    });
+  };
+
+
+  render() {
+    var a = '개';
+
+    return (<div className='App'>
+
+      <div>{this.state.count}{a}</div>   
+      <button onClick={this.countUp}>UP!</button>
+      <button onClick={this.countDown}>Down!</button>
+
+      <div>
+        <table border='1'> 
+          <tbody>
+            <tr>
+              <td> <input type={'button'} value={'test'} className='btn'></input> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    );
+  }
+}
+
+export default App;
