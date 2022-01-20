@@ -1,0 +1,48 @@
+============================================
+                미         완
+============================================
+
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
+function App() {
+  const month = Array(12).fill().map((v, i) => v = i + 1)
+  const day = Array(31).fill().map((v, i) => v = i + 1)
+
+  return (
+    <div className="text-3xl font-bold underline">
+      <Swiper
+        className='h-56'
+        direction={'vertical'}
+        slidesPerView={4}
+        loop={true}
+        loopAdditionalSlides={5}
+        slideToClickedSlide={true}
+        centeredSlides={true}
+        onSlideChange={(swiper) => console.log(swiper.realIndex + 1)}
+      > 
+        {month.map(no => <SwiperSlide key={no}>{({isActive}) => ( 
+          <div className={'p-2.5 text-gray_10' + (isActive ? 'underline' : '')}>{no}</div>
+          )}</SwiperSlide>)}
+      </Swiper>
+      <span>월</span>
+      <Swiper
+        direction={'vertical'}
+        slidesPerView={4}
+        loop={true}
+        loopAdditionalSlides={5}
+        slideToClickedSlide={true}
+        centeredSlides={true}
+        onSlideChange={(swiper) => console.log(swiper.realIndex + 1)}
+      >
+        {day.map(no => <SwiperSlide key={no}>{({isActive}) => ( 
+          <div className={'p-2.5 text-gray_10' + (isActive ? 'underline' : '')}>{no}</div>
+          )}</SwiperSlide>)}
+      </Swiper>
+      <span>일</span>
+    </div>
+  );
+}
+
+export default App;
